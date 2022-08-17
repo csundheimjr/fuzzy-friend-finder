@@ -13,7 +13,7 @@
   </head>
   <body>
     <nav>
-      <nav class="navbar navbar-expand-lg bg-light">
+      <nav id="nav" class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">Navbar</a>
           <button
@@ -27,7 +27,11 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            id="search-button"
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -45,7 +49,7 @@
                 >
                   Dropdown
                 </a>
-                <ul class="dropdown-menu">
+                <ul id="nav-dropdown" class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider" /></li>
@@ -74,7 +78,7 @@
       </nav>
     </nav>
     <main>
-      <section>
+      <section id="section-dog">
         <div id="card1" class="card" style="width: 18rem">
           <img src="..." class="card-img-top" alt="..." />
           <div class="card-body">
@@ -133,7 +137,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section id="section-cat">
         <div id="card4" class="card" style="width: 18rem">
           <img src="..." class="card-img-top" alt="..." />
           <div class="card-body">
@@ -192,16 +196,12 @@
           </div>
         </div>
       </section>
-      <section>
-        <div
-          id="carouselExampleIndicators"
-          class="carousel slide"
-          data-bs-ride="true"
-        >
+      <section id="section-adopted">
+        <div id="carousel" class="carousel slide" data-bs-ride="true">
           <div class="carousel-indicators">
             <button
               type="button"
-              data-bs-target="#carouselExampleIndicators"
+              data-bs-target="#carousel"
               data-bs-slide-to="0"
               class="active"
               aria-current="true"
@@ -209,13 +209,13 @@
             ></button>
             <button
               type="button"
-              data-bs-target="#carouselExampleIndicators"
+              data-bs-target="#carousel"
               data-bs-slide-to="1"
               aria-label="Slide 2"
             ></button>
             <button
               type="button"
-              data-bs-target="#carouselExampleIndicators"
+              data-bs-target="#carousel"
               data-bs-slide-to="2"
               aria-label="Slide 3"
             ></button>
@@ -234,7 +234,7 @@
           <button
             class="carousel-control-prev"
             type="button"
-            data-bs-target="#carouselExampleIndicators"
+            data-bs-target="#carousel"
             data-bs-slide="prev"
           >
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -243,7 +243,7 @@
           <button
             class="carousel-control-next"
             type="button"
-            data-bs-target="#carouselExampleIndicators"
+            data-bs-target="#carousel"
             data-bs-slide="next"
           >
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
