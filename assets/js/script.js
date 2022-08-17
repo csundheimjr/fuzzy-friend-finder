@@ -1,4 +1,7 @@
-var requestUrl = "https://api.petfinder.com/v2/animals";
+var requestUrl =
+  "https://api.petfinder.com/v2/animals?limit=5&distance=10&location=";
+
+var array = [];
 
 //Retrieves access token for api
 function getToken() {
@@ -25,6 +28,21 @@ getToken().then((response) =>
 );
 
 //TODO: Write function to take zipcode input from search bar and pull most recent pets from that zipcode
+
+$("#search-button").on("click", function (event) {
+  event.preventDefault();
+  var textValue = $(event.target).siblings().eq(0).val();
+  console.log($(event.target).siblings().eq(0).val());
+  requestUrl += textValue;
+  getToken().then((response) =>
+    fetch(requestUrl, {
+      headers: { Authorization: response },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+  );
+});
+
 //After creating an array of objects in this function, call the function below
 
 var pet1 = {
