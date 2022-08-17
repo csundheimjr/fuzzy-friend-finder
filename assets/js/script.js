@@ -12,8 +12,6 @@ function getToken() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      console.log("Bearer: " + data.access_token);
       return "Bearer " + data.access_token;
     });
 }
@@ -27,9 +25,6 @@ getToken().then((response) =>
     .then((data) => console.log(data))
 );
 
-//TODO: search function (lines 30 - 60)
-
-//TODO: load pictures, name, male/female, age (lines 60 - 80)
 //TODO: Write function to take zipcode input from search bar and pull most recent pets from that zipcode
 
 $("#search-button").on("click", function (event) {
