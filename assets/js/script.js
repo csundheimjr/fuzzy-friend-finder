@@ -28,33 +28,59 @@ function getToken() {
           </div> */
 function displayPets(anyArray) {
   //create element
-  var newCard = document.createElement("div");
-  var pic = document.createElement("image");
-  var nameEl = document.createElement("h4");
-  var ageEl = document.createElement("h5");
-  var genderEl = document.createElement("h5");
-  //alter or add text
-  console.log(anyArray);
-  console.log(anyArray[0]);
-  console.log(anyArray[0].name);
-  nameEl.textContent = anyArray[0].name;
-  ageEl.textContent = anyArray[0].age;
-  genderEl.textContent = anyArray[0].sex;
+  for (i = 0; i < anyArray.length; i++) {
+    var cardId = "card0" + i;
+    var cardBodyId = "card-body0" + i;
+    var factsListId = "facts-list0" + i;
+    var newCard = document.createElement("div");
+    var image = document.createElement("img");
+    var cardBody = document.createElement("div");
+    var petName = document.createElement("h5");
+    var factsList = document.createElement("ul");
+    var list1 = document.createElement("li");
+    var list2 = document.createElement("li");
+    console.log(newCard);
+    // var pic = document.createElement("image");
+    // var nameEl = document.createElement("h4");
+    // var ageEl = document.createElement("h5");
+    // var genderEl = document.createElement("h5");
+    // //alter or add text
+    console.log(anyArray);
+    console.log(anyArray[i]);
+    console.log(anyArray[i].name);
+    // nameEl.textContent = anyArray[0].name;
+    // ageEl.textContent = anyArray[0].age;
+    // genderEl.textContent = anyArray[0].sex;
+    newCard.classList.add("card");
+    newCard.id = cardId;
+    image.classList.add("card-img-top");
+    image.src = anyArray[i].pictureSource;
+    cardBody.classList.add("card-body");
+    cardBody.id = cardBodyId;
+    petName.classList.add("card-title");
+    factsList.classList.add("list-group");
+    factsList.classList.add("list-group-flush");
+    factsList.id = factsListId;
+    list1.classList.add("list-group-item");
+    list1.textContent = anyArray[i].age;
+    list2.classList.add("list-group-item");
+    list2.textContent = anyArray[i].sex;
+    petName.textContent = "Captain Carrot";
+    petName.textContent = anyArray[i].name;
 
-  //append
-  cardContainer.append(newCard);
-  newCard.append(name);
-  newCard.append(age);
-  newCard.append(gender);
+    // .addClass("card")
+    // .css("width", "18rem")
+    // .css("border", "2px solid black");
+    //append
+    document.getElementById("section-dog").appendChild(newCard);
+    document.getElementById(cardId).appendChild(image);
+    document.getElementById(cardId).appendChild(cardBody);
+    document.getElementById(cardBodyId).appendChild(petName);
+    document.getElementById(cardId).appendChild(factsList);
+    document.getElementById(factsListId).appendChild(list1);
+    document.getElementById(factsListId).appendChild(list2);
+  }
 }
-//With new access token, pulls data from api and outputs to the console
-// getToken().then((response) =>
-//   fetch(requestUrl, {
-//     headers: { Authorization: response },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => console.log(data))
-// );
 
 //On click, input from search is added on to the end of the request url and then data is fetched from the api
 //Api provides 5 pets with tons of data in console
@@ -96,11 +122,9 @@ $("#search-button").on("click", function (event) {
         newPet.age = data.animals[i].age;
         newPet.sex = data.animals[i].gender;
         array.push(newPet);
-        console.log(array);
       }
+      displayPets(array);
     });
-  console.log(array);
-  displayPets(array);
 });
 
 //After creating an array of objects in this function, call the function below
