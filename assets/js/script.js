@@ -2,6 +2,8 @@ var requestUrl =
   "https://api.petfinder.com/v2/animals?limit=6&distance=10&location=";
 var cardContainer = document.querySelector("section-dog");
 
+var array = [];
+
 //Retrieves access token for api
 function getToken() {
   return fetch("https://api.petfinder.com/v2/oauth2/token", {
@@ -112,7 +114,8 @@ $("#search-button").on("click", function (event) {
         console.log(data.animals[i]);
         console.log(data.animals[i].primary_photo_cropped);
         if (data.animals[i].primary_photo_cropped === null) {
-          newPet.pictureSource = "#"; //add path to image in folder
+          newPet.pictureSource =
+            "https://i0.wp.com/orstx.org/wp-content/uploads/2019/10/no-photo-available-icon-12.jpg?fit=300%2C245&ssl=1"; //add path to image in folder
         } else {
           var object = data.animals[i].primary_photo_cropped;
           var key = Object.keys(object)[0];
