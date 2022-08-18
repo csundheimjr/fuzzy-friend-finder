@@ -1,6 +1,7 @@
-var requestUrl = "https://api.petfinder.com/v2/animals";
+var requestUrl =
+  "https://api.petfinder.com/v2/animals?limit=5&distance=10&location=";
 
-//retrieves access token for api
+//Retrieves access token for api
 function getToken() {
   return fetch("https://api.petfinder.com/v2/oauth2/token", {
     body: "grant_type=client_credentials&client_id=8PvP1zLa44Dbu32OINQVKFniQUi4dm8zwRrMZP79yGUe1bpR77&client_secret=WqcfGpCUu5OU455kDUmVmBYxg27SsF29ut5LtBCF",
@@ -11,13 +12,11 @@ function getToken() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      console.log("Bearer: " + data.access_token);
       return "Bearer " + data.access_token;
     });
 }
 
-//with new access token, pulls data from api and outputs to the console
+//With new access token, pulls data from api and outputs to the console
 getToken().then((response) =>
   fetch(requestUrl, {
     headers: { Authorization: response },
@@ -25,3 +24,46 @@ getToken().then((response) =>
     .then((response) => response.json())
     .then((data) => console.log(data))
 );
+
+//TODO: Write function to take zipcode input from search bar and pull most recent pets from that zipcode
+
+$("#search-button").on("click", function (event) {
+  event.preventDefault();
+  var textValue = $(event.target).siblings().eq(0).val();
+  console.log($(event.target).siblings().eq(0).val());
+  requestUrl += textValue;
+  getToken().then((response) =>
+    fetch(requestUrl, {
+      headers: { Authorization: response },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+  );
+});
+
+//After creating an array of objects in this function, call the function below
+
+var pet1 = {
+  age: "Young",
+  sex: "male",
+  image_src: "#",
+  animal: "cat",
+};
+var pet2 = {
+  age: "Young",
+  sex: "female",
+  image_src: "#",
+  animal: "cat",
+};
+var pet3 = {
+  age: "Old",
+  sex: "female",
+  image_src: "#",
+  animal: "dog",
+};
+
+var petsExampleArray = [pet1, pet2, pet3];
+//TODO: Write function to turn API data into cards on html using the example array above for now
+//create elements
+//add text/images to elements
+//append elements
