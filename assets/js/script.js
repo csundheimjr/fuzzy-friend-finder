@@ -29,32 +29,52 @@ function getToken() {
 function displayPets(anyArray) {
   //create element
   var newCard = document.createElement("div");
-  var pic = document.createElement("image");
-  var nameEl = document.createElement("h4");
-  var ageEl = document.createElement("h5");
-  var genderEl = document.createElement("h5");
-  //alter or add text
+  var image = document.createElement("img");
+  var cardBody = document.createElement("div");
+  var petName = document.createElement("h5");
+  var factsList = document.createElement("ul");
+  var list1 = document.createElement("li");
+  var list2 = document.createElement("li");
+  console.log(newCard);
+  // var pic = document.createElement("image");
+  // var nameEl = document.createElement("h4");
+  // var ageEl = document.createElement("h5");
+  // var genderEl = document.createElement("h5");
+  // //alter or add text
   console.log(anyArray);
   console.log(anyArray[0]);
   console.log(anyArray[0].name);
-  nameEl.textContent = anyArray[0].name;
-  ageEl.textContent = anyArray[0].age;
-  genderEl.textContent = anyArray[0].sex;
+  // nameEl.textContent = anyArray[0].name;
+  // ageEl.textContent = anyArray[0].age;
+  // genderEl.textContent = anyArray[0].sex;
+  newCard.textContent = "WORKING";
+  newCard.classList.add("card");
+  newCard.id = "card";
+  image.classList.add("card-img-top");
+  image.src = "#"; //anyArray[i].pictureSource;
+  cardBody.classList.add("card-body");
+  cardBody.id = "card-body";
+  petName.classList.add("card-title");
+  factsList.classList.add("list-group");
+  factsList.classList.add("list-group-flush");
+  factsList.id = "facts-list";
+  list1.classList.add("list-grou-item");
+  list2.classList.add("list-group-item");
+  petName.textContent = "Captain Carrot";
+  //petName.textContent = anyArray[i].name;
 
+  // .addClass("card")
+  // .css("width", "18rem")
+  // .css("border", "2px solid black");
   //append
-  cardContainer.append(newCard);
-  newCard.append(nameEl);
-  newCard.append(ageEl);
-  newCard.append(genderEl);
+  document.getElementById("section-dog").appendChild(newCard);
+  document.getElementById("card").appendChild(image);
+  document.getElementById("card").appendChild(cardBody);
+  document.getElementById("card-body").appendChild(petName);
+  document.getElementById("card").appendChild(factsList);
+  document.getElementById("facts-list").appendChild(list1);
+  document.getElementById("facts-list").appendChild(list2);
 }
-//With new access token, pulls data from api and outputs to the console
-// getToken().then((response) =>
-//   fetch(requestUrl, {
-//     headers: { Authorization: response },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => console.log(data))
-// );
 
 //On click, input from search is added on to the end of the request url and then data is fetched from the api
 //Api provides 5 pets with tons of data in console
