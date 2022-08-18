@@ -1,0 +1,83 @@
+:root{
+    background-color: #FFEDDB ;
+}
+
+#nav{
+    background-color: #FFEDDB;
+    
+
+}
+
+
+#section-dog{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #FFEDDB;
+
+}
+#section-cat{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #FFEDDB;
+
+}
+
+#card1{
+    background-color: #E3B7A0 ;
+    border-style: solid;
+    border-radius: 10px ;
+    border-width: 2px ;
+    border: #FF9F29 ;
+    margin-bottom: 20px; 
+}
+
+#card2{
+    background-color: #E3B7A0 ;
+    border-style: solid;
+    border-radius: 10px ;
+    border-width: 2px ;
+    border: #FF9F29 ;
+    margin-bottom: 20px;
+}
+
+
+#card3{
+    background-color: #E3B7A0 ;
+    border-style: solid;
+    border-radius: 10px ;
+    border-width: 2px ;
+    margin-bottom: 20px;
+    border: #FF9F29 ;
+}
+
+#card4{
+    background-color: #E3B7A0 ;
+    border-style: solid;
+    border-radius: 10px ;
+    border-width: 2px ;
+    border: #FF9F29 ;
+    margin-bottom: 20px;
+}
+
+#card5{
+    background-color: #E3B7A0 ;
+    border-style: solid;
+    border-radius: 10px ;
+    border-width: 2px ;
+    border: #FF9F29 ;
+    margin-bottom: 20px;
+}
+
+#card6{
+    background-color: #E3B7A0 ;
+    border-style: solid;
+    border-radius: 10px ;
+    border-width: 2px ;
+    border: #FF9F29 ;
+    margin-bottom: 20px;
+} 
+
