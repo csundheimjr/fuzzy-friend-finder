@@ -1,0 +1,26 @@
+:root{
+    background-color: #FFEDDB ;
+}
+
+
+#section-dog{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+#card{
+background-color: #E3B7A0 ;
+    border-style: solid;
+    border-radius: 10px ;
+    border-width: 2px ;
+    border: #FF9F29 ;}
+
+
+
+
+/* #section-adopted{
+
+} */
