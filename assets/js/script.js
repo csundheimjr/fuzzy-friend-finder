@@ -43,9 +43,9 @@ function displayPets(anyArray) {
 
   //append
   cardContainer.append(newCard);
-  newCard.append(name);
-  newCard.append(age);
-  newCard.append(gender);
+  newCard.append(nameEl);
+  newCard.append(ageEl);
+  newCard.append(genderEl);
 }
 //With new access token, pulls data from api and outputs to the console
 // getToken().then((response) =>
