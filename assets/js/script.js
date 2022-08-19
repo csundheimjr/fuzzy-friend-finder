@@ -171,24 +171,3 @@ $("#search-button").on("click", function (event) {
       displayPets(array);
     });
 });
-
-var pet1 = {
-  age: "Young",
-  sex: "male",
-  image_src: "#",
-  animal: "cat",
-};
-var pet2 = {
-  age: "Young",
-  sex: "female",
-  image_src: "#",
-  animal: "cat",
-};
-var pet3 = {
-  age: "Old",
-  sex: "female",
-  image_src: "#",
-  animal: "dog",
-};
-
-var petsExampleArray = [pet1, pet2, pet3];
