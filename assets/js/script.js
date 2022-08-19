@@ -19,6 +19,25 @@ function getToken() {
     });
 }
 
+fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
+  response.json().then((data) => {
+    console.log(data.message);
+    $("#car-1.").setAttribute("src", data.message);
+  })
+);
+fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
+  response.json().then((data) => {
+    console.log(data.message);
+    $("#car-2.").setAttribute("src", data.message);
+  })
+);
+fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
+  response.json().then((data) => {
+    console.log(data.message);
+    $("#car-3.").setAttribute("src", data.message);
+  })
+);
+
 /* <div id="card1" class="card" style="width: 18rem">
           <img src="..." class="card-img-top" alt="..." />
           <div class="card-body">
