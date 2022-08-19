@@ -42,10 +42,10 @@ Once you've opened the webpage, you can enter your zipcode into the Search featu
 
 
 Link to our github repository:
-git@github.com:csundheimjr/fuzzy-friend-finder.git
+https://github.com/csundheimjr/fuzzy-friend-finder
 
 Link to our webpage:
-https://github.com/csundheimjr/fuzzy-friend-finder
+git@github.com:csundheimjr/fuzzy-friend-finder.git 
 
 ## Credits
 
