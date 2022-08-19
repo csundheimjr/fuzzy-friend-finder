@@ -12,6 +12,7 @@
 }
 
 
+
 #search-button{
     background-color: #E3B7A0;
     color: black;
@@ -57,6 +58,11 @@
 
 }
 
+.navbar-brand{
+    font-family: 'DynaPuff', cursive;
+    font-size:x-large;
+}
+
 .card button{
     border-radius: 10px;
     background-color:antiquewhite;
@@ -88,4 +94,10 @@
     padding-top: 20px;
     background-color: #E3B7A0;
     width: 100%;
+}
+
+footer{
+    font-family:'DynaPuff', cursive;
+    font-size:x-small;
+    background-color: #E3B7A0;
 }
