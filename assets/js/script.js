@@ -7,6 +7,12 @@ console.log(requestUrl);
 var cardContainer = document.querySelector("section-dog");
 
 var array = [];
+var savedPets = localStorage.getItem("pets");
+if (savedPets === null) {
+  savedPets = [];
+} else {
+  savedPets = JSON.parse(savedPets);
+}
 
 //Retrieves access token for api
 function getToken() {
@@ -25,19 +31,16 @@ function getToken() {
 
 fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
   response.json().then((data) => {
-    console.log(data.message);
     $("#car-1").attr("src", data.message);
   })
 );
 fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
   response.json().then((data) => {
-    console.log(data.message);
     $("#car-2").attr("src", data.message);
   })
 );
 fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
   response.json().then((data) => {
-    console.log(data.message);
     $("#car-3").attr("src", data.message);
   })
 );
@@ -54,14 +57,15 @@ function init() {
     )
     .then((response) => response.json())
     .then(function (data) {
-      //MAKE SURE YOU ITERATE THE SAME NUMBER OF TIMES AS THE NUMBER OF PETS PULLED FROM API (REMEMBER ERIK)
-      console.log(data);
       for (i = 0; i < resultsAmount; i++) {
         var newPet = {
           pictureSource: "",
           name: "",
           age: "",
           sex: "",
+          phone: "",
+          email: "",
+          animal: "",
         };
         if (data.animals[i].primary_photo_cropped === null) {
           newPet.pictureSource =
@@ -74,8 +78,10 @@ function init() {
         newPet.name = data.animals[i].name;
         newPet.age = data.animals[i].age;
         newPet.sex = data.animals[i].gender;
+        newPet.email = data.animals[i].contact.email;
+        newPet.phone = data.animals[i].contact.phone;
+        newPet.animal = data.animals[i].species;
         array.push(newPet);
-        console.log(array);
       }
       displayPets(array);
     });
@@ -84,7 +90,6 @@ function init() {
 init();
 
 function displayPets(anyArray) {
-  //create element
   for (i = 0; i < anyArray.length; i++) {
     var cardId = "card0" + i;
     var cardBodyId = "card-body0" + i;
@@ -96,10 +101,10 @@ function displayPets(anyArray) {
     var factsList = document.createElement("ul");
     var list1 = document.createElement("li");
     var list2 = document.createElement("li");
-    console.log(newCard);
-    console.log(anyArray);
-    console.log(anyArray[i]);
-    console.log(anyArray[i].name);
+    var list3 = document.createElement("li");
+    var saveButton = document.createElement("button");
+    var contactButton = document.createElement("button");
+
     newCard.classList.add("card");
     newCard.id = cardId;
     image.classList.add("card-img-top");
@@ -114,15 +119,89 @@ function displayPets(anyArray) {
     list1.textContent = "Age: " + anyArray[i].age;
     list2.classList.add("list-group-item");
     list2.textContent = "Gender: " + anyArray[i].sex;
+    list3.classList.add("list-group-item");
+    list3.textContent = "Species: " + anyArray[i].animal;
     petName.textContent = "Name: " + anyArray[i].name;
+    saveButton.textContent = "Favorite";
+    saveButton.classList.add("btn");
+    saveButton.classList.add("btn-outline-dark");
+    contactButton.classList.add("btn");
+    contactButton.classList.add("btn-outline-dark");
+    contactButton.textContent = "Contact";
+
+    // contactButton.on("click", displayContact(event));
 
     document.getElementById("section-dog").appendChild(newCard);
     document.getElementById(cardId).appendChild(image);
     document.getElementById(cardId).appendChild(cardBody);
     document.getElementById(cardBodyId).appendChild(petName);
     document.getElementById(cardId).appendChild(factsList);
+    document.getElementById(factsListId).appendChild(list3);
     document.getElementById(factsListId).appendChild(list1);
     document.getElementById(factsListId).appendChild(list2);
+    document.getElementById(cardBodyId).appendChild(saveButton);
+    // document.getElementById(cardBodyId).appendChild(contactButton);
+    // contactButton.addEventListener("click", function (event) {
+    //   console.log($(event.target).parent());
+    //   var phoneInfo = document.createElement("li");
+    //   phoneInfo.textContent = "Phone Number: " + anyArray[i].phone;
+    //   document.getElementById(factsListId).appendChild(phoneInfo);
+    // });
+    saveButton.addEventListener("click", function (event) {
+      var favPet = {
+        picSource: "",
+        name: "",
+        age: "",
+        gender: "",
+        phone: "",
+        email: "",
+        animal: "",
+      };
+      //add collecting phone and email and then displaying in modal
+      var speciesString = $(event.target)
+        .parent()
+        .parent()
+        .children()
+        .eq(2)
+        .children()
+        .eq(0)
+        .text();
+      favPet.animal = speciesString.replace("Species: ", "");
+      var nameString = $(event.target).parent().children().eq(0).text();
+      console.log($(event.target).parent().children());
+      favPet.name = nameString.replace("Name: ", "");
+      var age = $(event.target)
+        .parent()
+        .parent()
+        .children()
+        .eq(2)
+        .children()
+        .eq(1)
+        .text();
+      favPet.age = age.replace("Age: ", "");
+      var gender = $(event.target)
+        .parent()
+        .parent()
+        .children()
+        .eq(2)
+        .children()
+        .eq(2)
+        .text();
+      favPet.gender = gender.replace("Gender: ", "");
+      var picSRC = $(event.target)
+        .parent()
+        .parent()
+        .children()
+        .eq(0)
+        .attr("src");
+      favPet.picSource = picSRC;
+      if (savedPets === null) {
+        savedPets = [];
+      }
+      savedPets.push(favPet);
+      petToStorage = JSON.stringify(savedPets);
+      localStorage.setItem("pets", petToStorage);
+    });
   }
 }
 
@@ -146,15 +225,17 @@ $("#search-button").on("click", function (event) {
     )
     .then((response) => response.json())
     .then(function (data) {
+      console.log(data);
       for (i = 0; i < resultsAmount; i++) {
         var newPet = {
           pictureSource: "",
           name: "",
           age: "",
           sex: "",
+          email: "",
+          phone: "",
+          animal: "",
         };
-        console.log(data.animals[i]);
-        console.log(data.animals[i].primary_photo_cropped);
         if (data.animals[i].primary_photo_cropped === null) {
           newPet.pictureSource =
             "https://i0.wp.com/orstx.org/wp-content/uploads/2019/10/no-photo-available-icon-12.jpg?fit=300%2C245&ssl=1"; //add path to image in folder
@@ -163,11 +244,71 @@ $("#search-button").on("click", function (event) {
           var key = Object.keys(object)[0];
           newPet.pictureSource = object[key];
         }
+        newPet.email = data.animals[i].contact.email;
+        newPet.phone = data.animals[i].contact.phone;
+        newPet.animal = data.animals[i].species;
         newPet.name = data.animals[i].name;
         newPet.age = data.animals[i].age;
         newPet.sex = data.animals[i].gender;
+        console.log(newPet.animal);
         array.push(newPet);
       }
       displayPets(array);
     });
 });
+
+$("#favorite").on("click", function () {
+  var petsArray = JSON.parse(localStorage.getItem("pets"));
+  for (i = 0; i < petsArray.length; i++) {
+    var cardId = "card00" + i;
+    var cardBodyId = "card-body00" + i;
+    var factsListId = "facts-list00" + i;
+    var newCard = document.createElement("div");
+    var image = document.createElement("img");
+    var cardBody = document.createElement("div");
+    var petName = document.createElement("h5");
+    var factsList = document.createElement("ul");
+    var list1 = document.createElement("li");
+    var list2 = document.createElement("li");
+    var list3 = document.createElement("li");
+
+    newCard.classList.add("card");
+    newCard.id = cardId;
+    image.classList.add("card-img-top");
+    image.src = petsArray[i].picSource;
+    cardBody.classList.add("card-body");
+    cardBody.id = cardBodyId;
+    petName.classList.add("card-title");
+    factsList.classList.add("list-group");
+    factsList.classList.add("list-group-flush");
+    factsList.id = factsListId;
+    list3.textContent = "Species: " + petsArray[i].animal;
+    list3.classList.add("list-group-item");
+    list1.classList.add("list-group-item");
+    list1.textContent = "Age: " + petsArray[i].age;
+    list2.classList.add("list-group-item");
+    list2.textContent = "Gender: " + petsArray[i].gender;
+    petName.textContent = "Name: " + petsArray[i].name;
+
+    document.getElementById("modal-body").appendChild(newCard);
+    document.getElementById(cardId).appendChild(image);
+    document.getElementById(cardId).appendChild(cardBody);
+    document.getElementById(cardBodyId).appendChild(petName);
+    document.getElementById(cardId).appendChild(factsList);
+    document.getElementById(factsListId).appendChild(list3);
+    document.getElementById(factsListId).appendChild(list1);
+    document.getElementById(factsListId).appendChild(list2);
+
+    console.log(petName);
+  }
+});
+
+//Add filters to nav bar
+//Seventh step: add a "contact" button on each card. This could display a modale with the phone number, email and address for the shelter
+
+//Eigth step: add which type of animal each one is
+//Ninth step:
+
+//Make favorite button stay highlighted after click
+//separate buttons
+//add contact info

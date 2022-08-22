@@ -66,6 +66,20 @@
               </li> -->
             <!-- </ul> -->
             <form class="d-flex" role="search">
+              <!-- <label for="distance">Distance: </label>
+              <select class="form-control form-control-sm" id="distance">
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+              </select>
+              <label for="age">Age: </label>
+              <select class="form-control form-control-sm" id="age">
+                <option>Baby</option>
+                <option>Young</option>
+                <option>Adult</option>
+                <option>Senior</option>
+              </select> -->
               <input
                 class="form-control me-2"
                 type="search"
@@ -74,12 +88,21 @@
               />
               <button
                 id="search-button"
-                class="btn btn-outline-success"
+                class="btn btn-outline-dark"
                 type="submit"
               >
                 Search
               </button>
             </form>
+            <button
+              id="favorite"
+              class="btn btn-dark m-3"
+              type="button"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              My Favorite Pets
+            </button>
           </div>
         </div>
       </nav>
@@ -245,6 +268,33 @@
         </div>
       </section>
     </main>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Current Favorite Pets:
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modal-body"></div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
   </body>
   <footer class="footer">
     <h2>Made with ❤️ by the Friends of Fuzzy Friend Finders</h2>
