@@ -25,19 +25,16 @@ function getToken() {
 
 fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
   response.json().then((data) => {
-    console.log(data.message);
     $("#car-1").attr("src", data.message);
   })
 );
 fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
   response.json().then((data) => {
-    console.log(data.message);
     $("#car-2").attr("src", data.message);
   })
 );
 fetch("https://dog.ceo/api/breeds/image/random").then((response) =>
   response.json().then((data) => {
-    console.log(data.message);
     $("#car-3").attr("src", data.message);
   })
 );
@@ -54,8 +51,6 @@ function init() {
     )
     .then((response) => response.json())
     .then(function (data) {
-      //MAKE SURE YOU ITERATE THE SAME NUMBER OF TIMES AS THE NUMBER OF PETS PULLED FROM API (REMEMBER ERIK)
-      console.log(data);
       for (i = 0; i < resultsAmount; i++) {
         var newPet = {
           pictureSource: "",
@@ -75,7 +70,6 @@ function init() {
         newPet.age = data.animals[i].age;
         newPet.sex = data.animals[i].gender;
         array.push(newPet);
-        console.log(array);
       }
       displayPets(array);
     });
@@ -84,7 +78,6 @@ function init() {
 init();
 
 function displayPets(anyArray) {
-  //create element
   for (i = 0; i < anyArray.length; i++) {
     var cardId = "card0" + i;
     var cardBodyId = "card-body0" + i;
@@ -171,3 +164,24 @@ $("#search-button").on("click", function (event) {
       displayPets(array);
     });
 });
+
+//TODO:
+//Add button to each card (in init and search listener) with "save"
+//On page load, pull JSON file of saved pets, (if null, give an empty string)
+//Create a nav bar button to display a modale or something with saved pets
+//Within button creation, add event listener. If clicked, save info into an object called "saved pet"
+//Push this pet item to the saved pets parsed JSON file
+//Then stringify and set local storage "pets" to the new array JSON file
+
+//First step: adding button to each card
+//Second step: declare global object and keys
+//Third step: set global variable stored array to whatever is in local storage OR an empty array
+//Fourth step: on button click: set object items, push to global array, stringify, set local storage
+//Fifth step: on "view saved pets" click in the nav, display the modale and dynamically display each saved pet (same as on page?)
+//Sixth step: Find a way to delete pets from saved if a user wants.
+
+//Add filters to nav bar
+//Seventh step: add a "contact" button on each card. This could display a modale with the phone number, email and address for the shelter
+
+//Eigth step: add which type of animal each one is
+//Ninth step:
