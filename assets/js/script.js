@@ -106,6 +106,7 @@ function displayPets(anyArray) {
     var contactButton = document.createElement("button");
 
     newCard.classList.add("card");
+    newCard.setAttribute("phone", anyArray[i].phone);
     newCard.id = cardId;
     image.classList.add("card-img-top");
     image.src = anyArray[i].pictureSource;
@@ -147,6 +148,7 @@ function displayPets(anyArray) {
     //   phoneInfo.textContent = "Phone Number: " + anyArray[i].phone;
     //   document.getElementById(factsListId).appendChild(phoneInfo);
     // });
+
     saveButton.addEventListener("click", function (event) {
       var favPet = {
         picSource: "",
@@ -154,10 +156,11 @@ function displayPets(anyArray) {
         age: "",
         gender: "",
         phone: "",
-        email: "",
         animal: "",
       };
       //add collecting phone and email and then displaying in modal
+      var phoneString = $(event.target).parent().parent().attr("phone");
+      favPet.phone = phoneString;
       var speciesString = $(event.target)
         .parent()
         .parent()
@@ -269,8 +272,8 @@ $("#favorite").on("click", function () {
     var petName = document.createElement("h5");
     var factsList = document.createElement("ul");
     var list1 = document.createElement("li");
-    var list2 = document.createElement("li");
-    var list3 = document.createElement("li");
+    // var list2 = document.createElement("li");
+    // var list3 = document.createElement("li");
 
     newCard.classList.add("card");
     newCard.id = cardId;
@@ -282,12 +285,12 @@ $("#favorite").on("click", function () {
     factsList.classList.add("list-group");
     factsList.classList.add("list-group-flush");
     factsList.id = factsListId;
-    list3.textContent = "Species: " + petsArray[i].animal;
-    list3.classList.add("list-group-item");
+    // list3.textContent = "Species: " + petsArray[i].animal;
+    // list3.classList.add("list-group-item");
     list1.classList.add("list-group-item");
-    list1.textContent = "Age: " + petsArray[i].age;
-    list2.classList.add("list-group-item");
-    list2.textContent = "Gender: " + petsArray[i].gender;
+    list1.textContent = "Shelter Phone Number: " + petsArray[i].phone;
+    // list2.classList.add("list-group-item");
+    // list2.textContent = "Gender: " + petsArray[i].gender;
     petName.textContent = "Name: " + petsArray[i].name;
 
     document.getElementById("modal-body").appendChild(newCard);
@@ -295,9 +298,9 @@ $("#favorite").on("click", function () {
     document.getElementById(cardId).appendChild(cardBody);
     document.getElementById(cardBodyId).appendChild(petName);
     document.getElementById(cardId).appendChild(factsList);
-    document.getElementById(factsListId).appendChild(list3);
+    // document.getElementById(factsListId).appendChild(list3);
     document.getElementById(factsListId).appendChild(list1);
-    document.getElementById(factsListId).appendChild(list2);
+    // document.getElementById(factsListId).appendChild(list2);
 
     console.log(petName);
   }
