@@ -7,6 +7,12 @@ console.log(requestUrl);
 var cardContainer = document.querySelector("section-dog");
 
 var array = [];
+var savedPets = localStorage.getItem("pets");
+if (savedPets === null) {
+  savedPets = [];
+} else {
+  savedPets = JSON.parse(savedPets);
+}
 
 //Retrieves access token for api
 function getToken() {
@@ -89,10 +95,9 @@ function displayPets(anyArray) {
     var factsList = document.createElement("ul");
     var list1 = document.createElement("li");
     var list2 = document.createElement("li");
-    console.log(newCard);
-    console.log(anyArray);
-    console.log(anyArray[i]);
-    console.log(anyArray[i].name);
+    var saveButton = document.createElement("button");
+    var contactButton = document.createElement("button");
+
     newCard.classList.add("card");
     newCard.id = cardId;
     image.classList.add("card-img-top");
@@ -108,6 +113,14 @@ function displayPets(anyArray) {
     list2.classList.add("list-group-item");
     list2.textContent = "Gender: " + anyArray[i].sex;
     petName.textContent = "Name: " + anyArray[i].name;
+    saveButton.textContent = "Favorite";
+    saveButton.classList.add("btn");
+    saveButton.classList.add("btn-outline-dark");
+    contactButton.classList.add("btn");
+    contactButton.classList.add("btn-outline-dark");
+    contactButton.textContent = "Contact";
+
+    // contactButton.on("click", displayContact(event));
 
     document.getElementById("section-dog").appendChild(newCard);
     document.getElementById(cardId).appendChild(image);
@@ -116,6 +129,49 @@ function displayPets(anyArray) {
     document.getElementById(cardId).appendChild(factsList);
     document.getElementById(factsListId).appendChild(list1);
     document.getElementById(factsListId).appendChild(list2);
+    document.getElementById(cardBodyId).appendChild(saveButton);
+    document.getElementById(cardBodyId).appendChild(contactButton);
+    saveButton.addEventListener("click", function (event) {
+      var favPet = {
+        picSource: "",
+        name: "",
+        age: "",
+        gender: "",
+      };
+      var nameString = $(event.target).parent().children().eq(0).text();
+      favPet.name = nameString.replace("Name: ", "");
+      var age = $(event.target)
+        .parent()
+        .parent()
+        .children()
+        .eq(2)
+        .children()
+        .eq(0)
+        .text();
+      favPet.age = age.replace("Age: ", "");
+      var gender = $(event.target)
+        .parent()
+        .parent()
+        .children()
+        .eq(2)
+        .children()
+        .eq(1)
+        .text();
+      favPet.gender = gender.replace("Gender: ", "");
+      var picSRC = $(event.target)
+        .parent()
+        .parent()
+        .children()
+        .eq(0)
+        .attr("src");
+      favPet.picSource = picSRC;
+      if (savedPets === null) {
+        savedPets = [];
+      }
+      savedPets.push(favPet);
+      petToStorage = JSON.stringify(savedPets);
+      localStorage.setItem("pets", petToStorage);
+    });
   }
 }
 
@@ -146,8 +202,6 @@ $("#search-button").on("click", function (event) {
           age: "",
           sex: "",
         };
-        console.log(data.animals[i]);
-        console.log(data.animals[i].primary_photo_cropped);
         if (data.animals[i].primary_photo_cropped === null) {
           newPet.pictureSource =
             "https://i0.wp.com/orstx.org/wp-content/uploads/2019/10/no-photo-available-icon-12.jpg?fit=300%2C245&ssl=1"; //add path to image in folder
