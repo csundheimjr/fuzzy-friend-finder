@@ -46,6 +46,9 @@ git@github.com:csundheimjr/fuzzy-friend-finder.git
 Link to our webpage:
 https://github.com/csundheimjr/fuzzy-friend-finder
 
+Deployed Link:
+https://csundheimjr.github.io/fuzzy-friend-finder/
+
 ## Credits
 
 Kaelin Salazar github.com/kaelinpsalazar kaelinsalazar@gmail.com
