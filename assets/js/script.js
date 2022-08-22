@@ -219,6 +219,47 @@ $("#search-button").on("click", function (event) {
     });
 });
 
+$("#favorite").on("click", function () {
+  var petsArray = JSON.parse(localStorage.getItem("pets"));
+  for (i = 0; i < petsArray.length; i++) {
+    var cardId = "card00" + i;
+    var cardBodyId = "card-body00" + i;
+    var factsListId = "facts-list00" + i;
+    var newCard = document.createElement("div");
+    var image = document.createElement("img");
+    var cardBody = document.createElement("div");
+    var petName = document.createElement("h5");
+    var factsList = document.createElement("ul");
+    var list1 = document.createElement("li");
+    var list2 = document.createElement("li");
+
+    newCard.classList.add("card");
+    newCard.id = cardId;
+    image.classList.add("card-img-top");
+    image.src = petsArray[i].picSource;
+    cardBody.classList.add("card-body");
+    cardBody.id = cardBodyId;
+    petName.classList.add("card-title");
+    factsList.classList.add("list-group");
+    factsList.classList.add("list-group-flush");
+    factsList.id = factsListId;
+    list1.classList.add("list-group-item");
+    list1.textContent = "Age: " + petsArray[i].age;
+    list2.classList.add("list-group-item");
+    list2.textContent = "Gender: " + petsArray[i].gender;
+    petName.textContent = "Name: " + petsArray[i].name;
+
+    document.getElementById("modal-body").appendChild(newCard);
+    document.getElementById(cardId).appendChild(image);
+    document.getElementById(cardId).appendChild(cardBody);
+    document.getElementById(cardBodyId).appendChild(petName);
+    document.getElementById(cardId).appendChild(factsList);
+    document.getElementById(factsListId).appendChild(list1);
+    document.getElementById(factsListId).appendChild(list2);
+    console.log(newCard);
+  }
+});
+
 //TODO:
 //Add button to each card (in init and search listener) with "save"
 //On page load, pull JSON file of saved pets, (if null, give an empty string)
