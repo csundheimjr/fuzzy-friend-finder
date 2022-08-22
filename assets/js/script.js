@@ -126,8 +126,12 @@ function displayPets(anyArray) {
     saveButton.textContent = "Favorite";
     saveButton.classList.add("btn");
     saveButton.classList.add("btn-outline-dark");
+    saveButton.classList.add("saveButton");
     contactButton.classList.add("btn");
     contactButton.classList.add("btn-outline-dark");
+    // saveButton.classList.add("active");
+    saveButton.setAttribute("data-toggle", "button");
+    saveButton.setAttribute("aria-pressed", "false");
     contactButton.textContent = "Contact";
 
     // contactButton.on("click", displayContact(event));
