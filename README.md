@@ -37,9 +37,6 @@ THEN I am presented with a carousel of pictures of "Recently Adopted Pets"
 Once you've opened the webpage, you can enter your zipcode into the Search feature. As soon as you press the Search button, you'll see information cards for several pets that are currently available for adoption in your area. The information card will tell you a little bit about each pet, including their name and a photo. 
 
 Link to our github repository:
-git@github.com:csundheimjr/fuzzy-friend-finder.git
-
-Link to our webpage:
 https://github.com/csundheimjr/fuzzy-friend-finder
 
 Deployed Link:
